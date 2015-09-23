@@ -87,7 +87,7 @@ public class ThreeCycleViewGroup extends FrameLayout implements View.OnClickList
         mid.setBackground(null);
         bot.setBackground(null);
 
-        for (int i=0;i<3;i++){
+        for (int i=2;i>=0;i--){
             if (status.get(i)==1)
                 container.addView(top);
             if (status.get(i)==2)

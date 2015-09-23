@@ -28,18 +28,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       /* ThreeCycle threeCycle = new ThreeCycle(
-                getResources().getDrawable(R.drawable.dino1),
-                getResources().getDrawable(R.drawable.dino2),
-                getResources().getDrawable(R.drawable.dino3),
-                getResources().getDrawable(R.drawable.animals1),
-                getResources().getDrawable(R.drawable.animals2),
-                getResources().getDrawable(R.drawable.animals3),
-                getResources().getDrawable(R.drawable.verhi1),
-                getResources().getDrawable(R.drawable.verhi2),
-                getResources().getDrawable(R.drawable.verhi3)
-        );*/
         ThreeCycle threeCycle = new ThreeCycle(
+                getResources().getDrawable(R.drawable.ic_dino1),
+                getResources().getDrawable(R.drawable.ic_dino2),
+                getResources().getDrawable(R.drawable.ic_dino3),
+                getResources().getDrawable(R.drawable.ic_animals1),
+                getResources().getDrawable(R.drawable.ic_animals2),
+                getResources().getDrawable(R.drawable.ic_animals3),
+                getResources().getDrawable(R.drawable.ic_verhi1),
+                getResources().getDrawable(R.drawable.ic_verhi2),
+                getResources().getDrawable(R.drawable.ic_verhi3)
+        );
+        /*ThreeCycle threeCycle = new ThreeCycle(
                 getResources().getDrawable(R.drawable.red_big),
                 getResources().getDrawable(R.drawable.red_med),
                 getResources().getDrawable(R.drawable.red_small),
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 getResources().getDrawable(R.drawable.green_big),
                 getResources().getDrawable(R.drawable.green_med),
                 getResources().getDrawable(R.drawable.green_small)
-        );
+        );*/
 
         ThreeCycleViewGroup threeCycleViewGroup = new ThreeCycleViewGroup(this,threeCycle);
         threeCycleViewGroup.setTopOnClickListener(new View.OnClickListener() {
