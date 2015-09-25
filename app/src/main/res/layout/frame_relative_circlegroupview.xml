@@ -3,27 +3,46 @@
     android:id="@+id/container"
      android:layout_width="200dp"
     android:layout_height="200dp">
+
+    <RelativeLayout
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="right|center_vertical">
     <ImageButton
         android:src="@drawable/blue100"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/mid_circle"
         android:background="@null"
-        android:layout_gravity="right|center_vertical" />
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+    </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal|top">
     <ImageButton
         android:src="@drawable/green100"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/top_circle"
         android:background="@null"
-        android:layout_gravity="center_horizontal|top" />
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+    </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal|bottom">
     <ImageButton
         android:src="@drawable/red100"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/bot_circle"
         android:background="@null"
-        android:layout_gravity="center_horizontal|bottom" />
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+    </RelativeLayout>
 </FrameLayout>
