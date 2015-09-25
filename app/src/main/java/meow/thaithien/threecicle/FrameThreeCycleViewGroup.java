@@ -19,16 +19,19 @@ import java.util.ArrayList;
 /**
  * Created by Thien on 8/12/2015.
  */
-public class ThreeCycleViewGroup extends FrameLayout implements View.OnClickListener{
+public class FrameThreeCycleViewGroup extends FrameLayout implements View.OnClickListener{
 
     private String LOG_TAG = ThreeCycleViewGroup.class.getSimpleName();
 
     private Context context;
-   private CircularView top;
+    private CircularView top;
     private CircularView mid;
     private CircularView bot;
+    private FrameLayout top_container;
+    private FrameLayout mid_container;
+    private FrameLayout bot_container;
     private FrameLayout container;
-   // private RelativeLayout container;
+    // private RelativeLayout container;
     private ThreeCycle threeCycle;
 
     private OnClickListener top_onclick;
@@ -38,19 +41,23 @@ public class ThreeCycleViewGroup extends FrameLayout implements View.OnClickList
     private OnTouchListener touchListener;
 
 
-    public ThreeCycleViewGroup(Context context, ThreeCycle threeCycle) {
+    public FrameThreeCycleViewGroup(Context context, ThreeCycle threeCycle) {
         super(context);
         this.context = context;
         //use LayoutInflater
         LayoutInflater li = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-       li.inflate(R.layout.frame_threecircle, this, true);//bind CustomViewGroup with List_item layout
-       // li.inflate(R.layout.relativecirclegroupview, this, true);//bind CustomViewGroup with List_item layout
+        li.inflate(R.layout.frame_image_threecircle, this, true);//bind CustomViewGroup with List_item layout
+        // li.inflate(R.layout.relativecirclegroupview, this, true);//bind CustomViewGroup with List_item layout
         this.threeCycle = threeCycle;
 
         //bind
         top = (CircularView) findViewById(R.id.top_circle);
         mid = (CircularView) findViewById(R.id.mid_circle);
         bot = (CircularView) findViewById(R.id.bot_circle);
+        top_container = (FrameLayout) findViewById(R.id.top_circle_container);
+        mid_container = (FrameLayout) findViewById(R.id.mid_circle_container);
+        bot_container = (FrameLayout) findViewById(R.id.bot_circle_container);
+
         container = (FrameLayout) findViewById(R.id.container);
         //container = (RelativeLayout) findViewById(R.id.container);
     }
@@ -61,19 +68,19 @@ public class ThreeCycleViewGroup extends FrameLayout implements View.OnClickList
         Drawable bot_d = threeCycle.getBot();
         ArrayList<Integer> status = threeCycle.getStatus();
 
-        //framelayout
+       //image view
         FrameLayout.LayoutParams top_param =  (FrameLayout.LayoutParams)top.getLayoutParams();
         FrameLayout.LayoutParams mid_param =  (FrameLayout.LayoutParams)mid.getLayoutParams();
         FrameLayout.LayoutParams bot_param =  (FrameLayout.LayoutParams)bot.getLayoutParams();
 
-        //relative layout
-     /*   RelativeLayout.LayoutParams top_param =  (RelativeLayout.LayoutParams)top.getLayoutParams();
-        RelativeLayout.LayoutParams mid_param =  (RelativeLayout.LayoutParams)mid.getLayoutParams();
-        RelativeLayout.LayoutParams bot_param =  (RelativeLayout.LayoutParams)bot.getLayoutParams();
-*/
-        container.removeView(top);
-        container.removeView(mid);
-        container.removeView(bot);
+        //inside container
+        FrameLayout.LayoutParams top_container_param =  (FrameLayout.LayoutParams)top_container.getLayoutParams();
+        FrameLayout.LayoutParams mid_container_param =  (FrameLayout.LayoutParams)mid_container.getLayoutParams();
+        FrameLayout.LayoutParams bot_container_param =  (FrameLayout.LayoutParams)bot_container.getLayoutParams();
+
+        container.removeView(top_container);
+        container.removeView(mid_container);
+        container.removeView(bot_container);
 
         top = new CircularView(context);
         top.setLayoutParams(top_param);
@@ -91,23 +98,36 @@ public class ThreeCycleViewGroup extends FrameLayout implements View.OnClickList
         mid.setImageDrawable(mid_d);
         bot.setImageDrawable(bot_d);
 
-       top.setOnClickListener(this);
+        top.setOnClickListener(this);
         mid.setOnClickListener(this);
         bot.setOnClickListener(this);
 
         top.setBackground(getResources().getDrawable(R.drawable.round));
         mid.setBackground(getResources().getDrawable(R.drawable.round));
         bot.setBackground(getResources().getDrawable(R.drawable.round));
-        /*top.setBackground(top_d);
-        mid.setBackground(mid_d);
-        bot.setBackground(bot_d);*/
+
+        top_container = new FrameLayout(context);
+        top_container.setId(R.id.top_circle_container);
+        top_container.setLayoutParams(top_container_param);
+        top_container.addView(top);
+
+        mid_container = new FrameLayout(context);
+        mid_container.setId(R.id.mid_circle_container);
+        mid_container.setLayoutParams(mid_container_param);
+        mid_container.addView(mid);
+
+        bot_container = new FrameLayout(context);
+        bot_container.setId(R.id.bot_circle_container);
+        bot_container.setLayoutParams(bot_container_param);
+        bot_container.addView(bot);
+
         for (int i = 2; i >= 0; i--) {
             if (status.get(i)==1)
-                container.addView(top);
+                container.addView(top_container);
             if (status.get(i)==2)
-                container.addView(mid);
+                container.addView(mid_container);
             if (status.get(i)==3)
-                container.addView(bot);
+                container.addView(bot_container);
         }
         //initOnTouchEvent(status.get(0),status.get(1),status.get(2));
     }
@@ -137,14 +157,14 @@ public class ThreeCycleViewGroup extends FrameLayout implements View.OnClickList
                 threeCycle.selectMid();
                 Log.v(LOG_TAG, "select mid");
                 setImage();
-               this.mid_onclick.onClick(mid);
+                this.mid_onclick.onClick(mid);
                 break;
 
             case R.id.bot_circle:
                 threeCycle.selectBot();
                 Log.v(LOG_TAG, "select bot");
                 setImage();
-               this.bot_onclick.onClick(bot);
+                this.bot_onclick.onClick(bot);
                 break;
         }
     }

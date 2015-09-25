@@ -49,8 +49,8 @@ public class CircularView extends ImageView implements View.OnTouchListener{
                 if (inCircle(evt.getX(), evt.getY(), mCircleCenterX, mCircleCenterY, mCircleRadius)) {
                     if(this.mClickListener != null)
                         this.mClickListener.onClick(view);
+                    return true;
                 }
-                return true;
             }
 
         }

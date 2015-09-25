@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 getResources().getDrawable(R.drawable.green_small)
         );*/
 
-        ThreeCycleViewGroup threeCycleViewGroup = new ThreeCycleViewGroup(this,threeCycle);
+        FrameThreeCycleViewGroup threeCycleViewGroup = new FrameThreeCycleViewGroup(this,threeCycle);
         threeCycleViewGroup.setTopOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
